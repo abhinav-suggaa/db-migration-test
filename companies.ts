@@ -11,3 +11,13 @@ router.post("/", async (req,res) => {
 
     res.json(company);
 });
+
+router.get("/", async (req,res) => {
+    return res.json(await prisma.company.findMany({
+        include: {
+            jobListings: true
+        }
+    }));
+});
+
+export default router;
